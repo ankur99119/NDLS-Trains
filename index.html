@@ -40,19 +40,7 @@
     padding-bottom:56px;
   }
   a{color:inherit;}
-  .wrap{max-width:1360px;margin:0 auto;padding:0 24px;}
-  .layout{display:block;}
-  .filters-card{
-    background:linear-gradient(180deg, #14262f 0%, #0e1c23 100%);
-    border:1px solid #23414c;
-    border-top:3px solid var(--amber);
-    border-radius:12px;
-    padding:20px 22px;
-    margin-bottom:22px;
-    box-shadow:0 10px 28px -16px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
-  }
-  .results-area{min-width:0;}
-  .results-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px;}
 
   /* ---------- Header ---------- */
   header.board{
@@ -85,10 +73,9 @@
   .tab.active{color:var(--amber);border-bottom-color:var(--amber);}
 
   /* ---------- Shared controls ---------- */
-  .controls{display:flex;flex-wrap:wrap;gap:18px 24px;padding:0;}
-  .ctrl-group{flex:1 1 210px;min-width:190px;display:flex;flex-direction:column;gap:7px;}
-  .ctrl-group.wide{flex:1 1 100%;}
-  .ctrl-label{font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);font-weight:600;}
+  .controls{padding:16px 0;display:flex;flex-direction:column;gap:14px;}
+  .ctrl-group{display:flex;flex-direction:column;gap:6px;}
+  .ctrl-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);font-weight:600;}
 
   .chip-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;}
   .chip-row::-webkit-scrollbar{display:none;}
@@ -122,11 +109,11 @@
 
   .search-row{display:flex;gap:8px;position:relative;}
   input.search{
-    flex:1;background:var(--panel-2);border:1px solid var(--line);color:var(--amber);
-    font-family:var(--mono);font-size:1.15rem;font-weight:600;padding:13px 38px 13px 14px;border-radius:5px;outline:none;
+    flex:1;background:var(--panel-2);border:1px solid var(--line);color:var(--text);
+    font-family:var(--mono);font-size:0.9rem;padding:11px 38px 11px 12px;border-radius:5px;outline:none;
     transition:border-color .15s;
   }
-  input.search::placeholder{color:var(--text-dim);font-weight:500;}
+  input.search::placeholder{color:var(--text-dimmer);}
   input.search:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-soft);}
   .clear-btn{
     position:absolute;right:70px;top:50%;transform:translateY(-50%);background:none;border:none;
@@ -231,12 +218,8 @@
   .berth-badge.days{border:1px solid var(--line);}
   .berth-badge.tag{border:1px solid var(--amber-dim);color:var(--amber);}
 
-  @media(min-width:900px){
-    .results-grid{grid-template-columns:repeat(auto-fill, minmax(360px, 1fr));}
-    .berth-pf-heading{grid-column:1/-1;}
-  }
   @media(min-width:720px){
-    .wrap{padding:0 32px;}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;}
     .ctrl-group.wide{grid-column:1/-1;}
   }
 </style>
@@ -261,7 +244,6 @@
 <div class="wrap">
   <!-- ===================== DEPARTURES PANEL ===================== -->
   <section class="panel active" id="panel-departures">
-    <div class="filters-card">
     <div class="controls">
       <div class="ctrl-group wide">
         <div class="ctrl-label">Search destination, station or train</div>
@@ -288,14 +270,13 @@
         <div class="day-pills" id="depDayPills"></div>
       </div>
     </div>
-    </div>
 
     <div class="results-head">
       <span id="depResultsCount">&nbsp;</span>
       <button class="reset" id="depResetBtn2">Reset</button>
     </div>
 
-    <div id="depBoard" class="results-grid"></div>
+    <div id="depBoard"></div>
     <div class="empty-state" id="depEmptyState" style="display:none;">
       <div class="big">No trains match that</div>
       <div class="small">Try a station name or code &mdash; like PNBE, GKP, RJPB or SVDK.</div>
@@ -308,7 +289,6 @@
 
   <!-- ===================== BERTHING PANEL ===================== -->
   <section class="panel" id="panel-berthing">
-    <div class="filters-card">
     <div class="controls">
       <div class="ctrl-group">
         <div class="ctrl-label">Platform</div>
@@ -330,10 +310,9 @@
         </div>
       </div>
     </div>
-    </div>
 
     <div class="results-head"><span id="berthResultCount">&nbsp;</span></div>
-    <div id="berthResults" class="results-grid"></div>
+    <div id="berthResults"></div>
 
     <div class="note-box">
       <h3>Reading the times</h3>
